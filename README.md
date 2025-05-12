@@ -1,13 +1,4 @@
-## KTPM_GROUP8
-### - Đề tài: YouTube-Clone
-### - Nguồn: https://www.youtube.com/@codewithantonio
-### - Thành viên trong nhóm gồm:
-|     Họ và tên        | Mã sinh viên  |
-|--------------------- |-------------- |
-|  Hà Mạnh Long        |   23010390    |
-|  Nguyễn Duy Hưng     |   23010368    |
-|  Trần Minh Hiếu      |   23010389    |
-|  Đinh Thị Như Quỳnh  |   23010844    |
+#Phần thực hiện Issues 1
 
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
