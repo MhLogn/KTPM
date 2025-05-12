@@ -1,3 +1,15 @@
+## KTPM_GROUP8
+### - Đề tài: YouTube-Clone
+### - Nguồn: https://www.youtube.com/@codewithantonio
+### - Thành viên trong nhóm gồm:
+|     Họ và tên        | Mã sinh viên  |
+|--------------------- |-------------- |
+|  Hà Mạnh Long        |   23010390    |
+|  Nguyễn Duy Hưng     |   23010368    |
+|  Trần Minh Hiếu      |   23010389    |
+|  Đinh Thị Như Quỳnh  |   23010844    |
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -34,3 +46,4 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
