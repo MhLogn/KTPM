@@ -1,7 +1,7 @@
 ## KTPM_GROUP8
 ### - Đề tài: YouTube-Clone
 ### - Framework: Next.js
-### - Nguồn: https://www.youtube.com/@codewithantonio
+### - Wiki: https://github.com/MhLogn/KTPM/wiki
 ### - Thành viên trong nhóm gồm:
 |     Họ và tên        | Mã sinh viên  |
 |--------------------- |-------------- |
