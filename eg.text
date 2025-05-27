@@ -3,5 +3,5 @@ Các Farmwork/ Công nghệ sử dụng trong dự án gồm:
 2, Lưu tài khoản và tạo tài khoản qua Clerk
 3, Sử dụng thư viện ShadcnUI và tailwindCSS
 4, Sử dụng tRPC để thực hiện bảo mật và an toàn cho các API
-5, Dùng neon, upstash với PostgreSQL trong DrizzleORM để lưu trữ dữ liệu trên cloud
+5, Dùng neon, Redis-upstash với PostgreSQL trong DrizzleORM để lưu trữ dữ liệu trên cloud
 6, Quản lý video bằng cách sử dụng các thư viện trong Mux, Uploadthing
