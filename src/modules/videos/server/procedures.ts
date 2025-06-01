@@ -9,13 +9,36 @@ import { UTApi } from "uploadthing/server";
 import { workflow } from "@/lib/workflow";
 
 export const videosRouter = createTRPCRouter({
-    generateThumbnail: protectedProcedure
+    generateDescription: protectedProcedure
+        .input(z.object({ id: z.string().uuid() }))
+        .mutation(async ({ ctx, input }) => {
+            const { id: userId } = ctx.user;
+            const { workflowRunId } = await workflow.trigger({
+                url: `${process.env.UPSTASH_WORKFLOW_URL}/api/videos/workflows/description`,
+                body: { userId, videoId: input.id },
+            });
+
+            return workflowRunId;
+        }),
+    generateTitle: protectedProcedure
         .input(z.object({ id: z.string().uuid() }))
         .mutation(async ({ ctx, input }) => {
             const { id: userId } = ctx.user;
             const { workflowRunId } = await workflow.trigger({
                 url: `${process.env.UPSTASH_WORKFLOW_URL}/api/videos/workflows/title`,
                 body: { userId, videoId: input.id },
+            });
+
+            return workflowRunId;
+        }),
+
+    generateThumbnail: protectedProcedure
+        .input(z.object({ id: z.string().uuid(), prompt: z.string().min(10) }))
+        .mutation(async ({ ctx, input }) => {
+            const { id: userId } = ctx.user;
+            const { workflowRunId } = await workflow.trigger({
+                url: `${process.env.UPSTASH_WORKFLOW_URL}/api/videos/workflows/thumbnail`,
+                body: { userId, videoId: input.id, prompt: input.prompt },
             });
 
             return workflowRunId;
