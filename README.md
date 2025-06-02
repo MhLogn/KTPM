@@ -1,5 +1,4 @@
-## KTPM_GROUP8
-### - Đề tài: YouTube-Clone
+## - Đề tài: YouTube-Clone
 ### - Framework: Next.js
 ### - Wiki: https://github.com/MhLogn/KTPM/wiki
 ### - Thành viên trong nhóm gồm:
