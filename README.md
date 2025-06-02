@@ -49,6 +49,7 @@ Dự án nhằm mục tiêu:
 git clone https://github.com/MhLogn/KTPM.git
 cd KTPM
 bun install
+```bash
 
 ### 2. Push on Github:
 
