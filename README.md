@@ -50,8 +50,7 @@ git clone https://github.com/MhLogn/KTPM.git
 cd KTPM
 bun install
 
-
-## Push Up GitHub
+### 2. Push on Github:
 
 ```bash
 git init 
