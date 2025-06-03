@@ -40,8 +40,7 @@ VideoOwnerProps) => {
                     asChild
                 >
                     <Link href={`/studio/videos/${videoId}`}>
-                        Subsribers
-                        {/* Edit video */}
+                        Edit video
                     </Link>
                 </Button>
             ) : (
