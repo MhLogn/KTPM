@@ -8,7 +8,7 @@ Một ứng dụng web mô phỏng nền tảng xem video trực tuyến YouTube
 
 Dự án nhằm mục tiêu:
 
-- Nâng cao kỹ năng phát triển ứng dụng web full-stack với Next.js.
+- Nâng cao kỹ năng phát triển phần mềm/ứng dụng web full-stack với Next.js.
 - Mô phỏng các chức năng cơ bản của YouTube như: xem video, tìm kiếm, đề xuất, đăng nhập.
 - Làm quen với quản lý trạng thái, routing động, và tối ưu hóa SEO.
 
@@ -31,7 +31,7 @@ Dự án nhằm mục tiêu:
 
 | Công nghệ           | Mô tả |
 |---------------------|-------|
-| **Next.js 14+**      | Framework chính, hỗ trợ SSR, App Router, Server Actions. |
+| **Next.js 15+**      | Framework chính, hỗ trợ SSR, App Router, Server Actions. |
 | **TypeScript**       | Ngôn ngữ chính giúp tăng độ an toàn và dễ bảo trì. |
 | **Tailwind CSS**     | Framework CSS tiện lợi, hỗ trợ responsive và thiết kế hiện đại. |
 | **Bun**              | Runtime thay thế Node.js để chạy ứng dụng siêu nhanh. |
@@ -46,9 +46,14 @@ Dự án nhằm mục tiêu:
 ### 1. Clone và cài đặt:
 
 ```bash
+Clone:
 git clone https://github.com/MhLogn/KTPM.git
 cd KTPM
+```
+```bash
+Cài đặt:
 bun install
+bun run dev:all
 ```
 
 ### 2. Push on Github:
