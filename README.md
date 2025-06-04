@@ -1,4 +1,4 @@
-# 📺 YouTube-Clone
+#  YouTube-Clone
 
 Một ứng dụng web mô phỏng nền tảng xem video trực tuyến YouTube, được xây dựng bằng [Next.js](https://nextjs.org), tận dụng kiến trúc hiện đại của React Server Components, App Router và tối ưu hiệu suất với các công cụ hiện đại.
 
