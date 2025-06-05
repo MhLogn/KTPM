@@ -15,12 +15,18 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "@/component
 
 interface CommentFormProps {
     videoId: string;
+    parentId?: string;
     onSuccess?: () => void;
+    onCancel?: () => void;
+    variant?: "comment" | "reply",
 };
 
 export const CommentForm = ({
     videoId,
+    parentId,
     onSuccess,
+    onCancel,
+    variant = "comment",
 }: CommentFormProps) => {
     const { user } = useUser();
 
@@ -77,7 +83,11 @@ export const CommentForm = ({
                                 <FormControl>
                                     <Textarea
                                         {...field}
-                                        placeholder="Add a comment..."
+                                        placeholder={
+                                            variant === "reply"
+                                            ? "Reply to this comment..."
+                                            : "Add a comment..."
+                                        }
                                         className="resize-none bg-transparent overflow-hidden min-h-0"
                                     />
                                 </FormControl>
