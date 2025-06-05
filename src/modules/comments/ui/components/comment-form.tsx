@@ -35,6 +35,7 @@ export const CommentForm = ({
     const create = trpc.comments.create.useMutation({
         onSuccess: () => {
             utils.comments.getMany.invalidate({ videoId });
+            utils.comments.getMany.invalidate({ videoId, parentId });
             form.reset();
             toast.success("Comment added");
             onSuccess?.();
@@ -55,6 +56,7 @@ export const CommentForm = ({
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
+            parentId: parentId,
             videoId: videoId,
             value: "",
         },
@@ -62,6 +64,11 @@ export const CommentForm = ({
 
     const handleSubmit = (values: z.infer<typeof formSchema>) => {
         create.mutate(values);
+    };
+
+    const handleCancel = () => {
+        form.reset();
+        onCancel?.();
     };
 
     return (
@@ -96,12 +103,20 @@ export const CommentForm = ({
                         )}
                     />
                     <div className="justify-end gap-2 mt-2 flex">
+                        {onCancel && (
+                            <Button
+                                variant="ghost" type="button"
+                                onClick={handleCancel}
+                            >
+                                Cancel
+                            </Button>
+                        )}
                         <Button
                             disabled={create.isPending}
                             type="submit"
                             size="sm"
                         >
-                            Comment
+                            {variant === "reply" ? "Reply" : "Comment"}
                         </Button>
                     </div>
                 </div>
