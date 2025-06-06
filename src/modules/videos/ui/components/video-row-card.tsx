@@ -46,7 +46,7 @@ interface VideoRowCardProps extends VariantProps<typeof videoRowCardVariants> {
 export const VideoRowCardSkeleton = () => {
     return (
         <div>
-            Skeleton
+            <Skeleton />
         </div>
     );
 };
@@ -56,6 +56,18 @@ export const VideoRowCard = ({
     size,
     onRemove,
 }: VideoRowCardProps) =>{
+    const compactViews = useMemo(() => {
+        return Intl.NumberFormat("en", {
+            notation: "compact"
+        }).format(data.viewCount);
+    }, [data.viewCount]);
+
+    const compactLikes = useMemo(() => {
+        return Intl.NumberFormat("en", {
+            notation: "compact"
+        }).format(data.likeCount);
+    }, [data.likeCount]);
+
     return (
         <div className={videoRowCardVariants({ size })}>
             <Link
@@ -87,7 +99,7 @@ export const VideoRowCard = ({
                         </h3>
                         {size === "default" && (
                             <p className="text-xs text-muted-foreground mt-1">
-                                {data.viewCount} views • {data.likeCount} likes
+                                {compactViews} views • {compactLikes} likes
                             </p>
                         )}
                         {size === "default" && (
@@ -106,15 +118,32 @@ export const VideoRowCard = ({
                                             {data.description ?? "No description"}
                                         </p>
                                     </TooltipTrigger>
-                                    <TooltipContent>
-                                        
+                                    <TooltipContent
+                                        side="bottom"
+                                        align="center"
+                                        className="bg-black/70"
+                                    >
+                                        <p>
+                                            From the video description
+                                        </p>
                                     </TooltipContent>
                                 </Tooltip>
                             </>
                         )}
+                        {size === "compact" && (
+                            <UserInfo size="sm" name={data.user.name} />
+                        )}
+                        {size === "compact" && (
+                            <p className="text-xs text-muted-foreground mt-1">
+                                {compactViews} views • {compactLikes} likes
+                            </p>
+                        )}
                     </Link>
+                    <div className="flex-none">
+                        <VideoMenu videoId={data.id} onRemove={onRemove} />
+                    </div>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
