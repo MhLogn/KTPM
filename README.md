@@ -181,8 +181,8 @@ Một ứng dụng web mô phỏng nền tảng xem video trực tuyến YouTube
 
    _H2.Trang kênh đã đăng kí_
 
-    ![image](https://github.com/user-attachments/assets/35641402-bf36-49d9-aaf0- 
- 311618d09536)
+    ![image](https://github.com/user-attachments/assets/9e6b39cc-0122-42df-a851-6916363b8e35)
+
 
  ---
   _H3.Trang các video trending_
