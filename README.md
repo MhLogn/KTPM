@@ -19,16 +19,6 @@ Một ứng dụng web mô phỏng nền tảng xem video trực tuyến YouTube
 
 ---
 
-## Nhiệm Vụ 
-| Họ và tên           | Vai trò       | Nhiệm vụ                                                                 |
-|---------------------|----------------|--------------------------------------------------------------------------|
-| Hà Mạnh Long        | Trưởng nhóm    | - Lên ý tưởng, quản lý tiến độ<br>- Thiết kế database<br>- Setup server backend (API, DB) |
-| Nguyễn Duy Hưng     | Thành viên     | - Thiết kế giao diện trang chủ, video player<br>- Giao diện tìm kiếm, danh mục, responsive |
-| Đinh Thị Như Quỳnh  | Thành viên     | - Xây dựng API: video, user, comment, like<br>- Hỗ trợ frontend<br>- Viết báo cáo, demo, slide |
-| Trần Minh Hiếu      | Thành viên     | - Xác định người dùng (login/register)<br>- Thống kê kết quả, chuẩn bị nộp |
-
----
-
 ## 📚 MỤC LỤC
 
 ### I. Giới thiệu chung về dự án
