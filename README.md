@@ -55,8 +55,8 @@ Một ứng dụng web mô phỏng nền tảng xem video trực tuyến YouTube
 ### IX. Tài liệu tham khảo
 
 ---
-## 📢 I. Giới thiệu chung về dự án 
-## 🎯 1.1 Mục tiêu :
+##  I. 📢 Giới thiệu chung về dự án 
+##  1.1 🎯 Mục tiêu :
 
 - Nâng cao kỹ năng phát triển phần mềm/ứng dụng web full-stack với Next.js.
 - Mô phỏng các chức năng cơ bản của YouTube như: xem video, tìm kiếm, đề xuất, đăng nhập.
@@ -181,8 +181,7 @@ Một ứng dụng web mô phỏng nền tảng xem video trực tuyến YouTube
 
    _H2.Trang kênh đã đăng kí_
 
-    ![image](https://github.com/user-attachments/assets/9e6b39cc-0122-42df-a851-6916363b8e35)
-
+  ![image](https://github.com/user-attachments/assets/a73aa53e-276f-4cf8-87d7-c508732fb066)
 
  ---
   _H3.Trang các video trending_
@@ -222,11 +221,30 @@ _H6.Trang chỉnh sửa video._
 
 ## 3.3 🎨 Thiết kế cơ sở dữ liệu
 
-Gồm các bảng chính: Users, Videos, Comments, Likes. Dữ liệu được tổ chức theo mô hình quan hệ hóa NoSQL (MongoDB).
+Cơ sở dữ liệu sử dụng MongoDB, theo mô hình NoSQL document-oriented. Dữ liệu được lưu trữ dưới dạng các collection (bảng), với các document (bản ghi) có cấu trúc linh hoạt.
+
+| Bảng (Collection) | Mục đích | Các trường chính (Fields) | Mô tả chi tiết |
+|-------------------|----------|--------------------------|----------------|
+| **Users**         | Lưu thông tin người dùng | - `_id`: ObjectId (khóa chính) <br> - `username`: String <br> - `email`: String <br> - `password`: String (đã mã hóa) <br> - `avatar`: URL ảnh đại diện <br> - `createdAt`: Ngày tạo tài khoản | Lưu trữ thông tin cơ bản và bảo mật người dùng hệ thống |
+| **Videos**        | Lưu dữ liệu video tải lên | - `_id`: ObjectId <br> - `userId`: ObjectId (người upload) <br> - `title`: String <br> - `description`: String <br> - `videoUrl`: URL video <br> - `thumbnailUrl`: URL ảnh thu nhỏ <br> - `createdAt`: Ngày tải lên <br> - `views`: Số lượt xem | Chứa dữ liệu chính về video, liên kết đến người dùng |
+| **Comments**      | Lưu bình luận của người dùng | - `_id`: ObjectId <br> - `videoId`: ObjectId (video được bình luận) <br> - `userId`: ObjectId (người bình luận) <br> - `content`: String <br> - `createdAt`: Ngày bình luận | Quản lý bình luận, hỗ trợ tương tác trên video |
+| **Likes**         | Lưu thông tin lượt thích | - `_id`: ObjectId <br> - `videoId`: ObjectId <br> - `userId`: ObjectId <br> - `type`: String (`like` hoặc `dislike`) <br> - `createdAt`: Ngày thực hiện | Theo dõi lượt like/dislike của người dùng trên video |
+
+---
+
+### Mô hình quan hệ (quan hệ hóa NoSQL)
+
+- Các bảng được liên kết bằng cách lưu giữ các `ObjectId` của tài liệu liên quan (ví dụ: `userId` trong Videos tham chiếu tới `_id` của Users).  
+- MongoDB cho phép lưu trữ linh hoạt, có thể mở rộng hoặc nhúng thêm các trường khác khi cần.  
+- Thiết kế này giúp tối ưu hiệu suất đọc và viết trong ứng dụng.
+
+---
 
 # IV. 🧑‍🎨 Thiết kế giao diện người dùng (UI/UX)
 
 Thiết kế theo phong cách tối giản, dễ sử dụng. Giao diện gồm các trang: Trang chủ, Trang xem video, Tìm kiếm, Đăng nhập/Đăng ký, Kênh cá nhân. Sử dụng Tailwind CSS để responsive trên các thiết bị.
+
+---
 
 # V. 🗂️ Mô tả quy trình phát triển
 
@@ -236,19 +254,29 @@ Thiết kế theo phong cách tối giản, dễ sử dụng. Giao diện gồm 
 - Kiểm thử, fix bug.
 - Đóng gói và triển khai.
 
+---
+
 # VI. 🖌️ Kiểm thử và đánh giá
 
-Sử dụng Postman kiểm thử API, manual test frontend. Đánh giá dựa trên hiệu suất tải video, trải nghiệm người dùng, tính năng hoạt động ổn định.
+	⇒ Sử dụng Postman kiểm thử API, manual test frontend. Đánh giá dựa trên hiệu suất tải video, trải nghiệm người dùng, tính năng hoạt động ổn định.
 
-# VII. 🌀 Khó khăn và hướng giải quyết
+---
 
-- Khó khăn khi upload video lớn: giải quyết bằng Cloudinary.
-- Giao tiếp giữa frontend và backend: sử dụng CORS với JWT Token.
-- Responsive giao diện: sử dụng Tailwind và media query.
+## VII. 🌀 Khó khăn và hướng giải quyết
+
+| STT | Khó khăn                                      | Hướng giải quyết                                        |
+|-----|-----------------------------------------------|---------------------------------------------------------|
+| 1   | Upload video dung lượng lớn                   | Sử dụng Cloudinary để lưu trữ và xử lý video            |
+| 2   | Giao tiếp giữa frontend và backend            | Cấu hình CORS và sử dụng JWT Token để xác thực          |
+| 3   | Responsive giao diện                          | Sử dụng Tailwind CSS kết hợp với media queries          |
+
+---
 
 ## VIII. ✅ Kết luận và hướng phát triển
 
-> Dự án góp phần hỗ trợ quy trình phát triển, mô tả dùng web thực tế. Trong tương lai có thể mở rộng thêm nền livestream, đề xuất video bằng AI, tích hợp OAuth (Google login).
+	⇒  Dự án góp phần hỗ trợ quy trình phát triển, mô tả dùng web thực tế. Trong tương lai có thể mở rộng thêm nền livestream, đề xuất video bằng AI, tích hợp OAuth (Google login).
+
+ ---
 
 ## IX. 📚 Tài liệu tham khảo
 
@@ -258,6 +286,8 @@ Sử dụng Postman kiểm thử API, manual test frontend. Đánh giá dựa tr
 | 2   | MongoDB Documentation  | [https://www.mongodb.com/docs](https://www.mongodb.com/docs) |
 | 3   | ReactJS Docs           | [https://reactjs.org/docs](https://reactjs.org/docs) |
 | 4   | Node.js Docs           | [https://nodejs.org/en/docs](https://nodejs.org/en/docs) |
+
+---
 
 ## 🚀 Cách chạy dự án
 
