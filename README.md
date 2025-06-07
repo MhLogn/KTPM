@@ -152,6 +152,41 @@ Một ứng dụng web mô phỏng nền tảng xem video trực tuyến YouTube
 - Trang nay hiển thị ảnh đại diện, tên người dùng, số người theo dõi. Liệt kê tất cả các video mà người dùng đã tải lên.
 - Có thể chỉnh sửa thông tin cá nhân hoặc xóa video.
 
+## 2.8 Biểu đồ tổng quát:
+
+![image](https://github.com/user-attachments/assets/f603b020-40bf-4935-b87f-7c450758d6f0)
+
+
+ ## 2.9.1 Sơ đồ chức năng quản lí trang chính:
+
+ ![image](https://github.com/user-attachments/assets/4d45551d-f424-4777-9119-4cd685a9f698)
+
+ ## 2.9.22 Sơ đồ quản lí tài khoản:
+
+ ![image](https://github.com/user-attachments/assets/4a46c423-f38f-4966-8473-c58f31680019)
+
+ ## Quy trình nghiệp vụ 
+   ### Trang chủ
+
+   ![Basic_Layout](https://github.com/user-attachments/assets/d5d65a84-fb95-4b9d-9946-f53608a58ec3)
+   
+   ### Giao diện chức năng đăng nhập qua Clerk.
+
+   ![image](https://github.com/user-attachments/assets/46dd712d-6820-4c91-91a1-bd051e8526d0)
+
+   ### Trang quản lí video.
+
+   ![Trang quản lý video cá nhân](https://github.com/user-attachments/assets/fd93e8ea-6dd2-4c8d-91fd-0621d74f5b3c)
+
+   ### Trang chỉnh sửa video.
+
+   ![Trang chỉnh sửa video](https://github.com/user-attachments/assets/b14babb5-225d-4fe5-9b8b-cc5d2b901123)
+
+
+
+
+
+
 ## III. Thiết kế hệ thống
 
 ## 3.1 Kiến trúc tổng thể
