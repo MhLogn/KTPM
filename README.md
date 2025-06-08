@@ -1,6 +1,6 @@
 # BÁO CÁO DỰ ÁN: 🎥 YouTube-Clone
 
-Một ứng dụng web mô phỏng nền tảng xem video trực tuyến YouTube, được xây dựng bằng [Next.js](https://nextjs.org), tận dụng kiến trúc hiện đại của React Server Components, App Router và tối ưu hiệu suất với các công cụ hiện đại.
+Một ứng dụng web mô phỏng nền tảng xem video trực tuyến YouTube, được xây dựng bằng [Next.js](https://nextjs.org) 15, tận dụng kiến trúc hiện đại của React Server Components, App Router và tối ưu hiệu suất với các công cụ hiện đại.
 
 ---
 
@@ -35,7 +35,6 @@ Một ứng dụng web mô phỏng nền tảng xem video trực tuyến YouTube
 - 2.4 Tải video lên
 - 2.5 Bình luận & tương tác
 - 2.6 Trang kênh cá nhân
-- 2.7 Trang kênh cá nhân
 
 ### III. Thiết kế hệ thống
 - 3.1 Kiến trúc tổng thể
@@ -68,32 +67,42 @@ Một ứng dụng web mô phỏng nền tảng xem video trực tuyến YouTube
 
 - Cho phép người dùng đăng nhập / đăng ký tài khoản  
 - Xem danh sách video, tìm kiếm video theo từ khóa  
-- Phát video, tải video lên  
+- Phát video, tải video lên, chỉnh sửa videovideo
 - Quản lý kênh cá nhân với các video đã tải lên  
 
 ---
 
 ## 1.3 💻 Công nghệ sử dụng
 
-| Công nghệ           | Mô tả |
-|---------------------|-------|
-| **Next.js 15+**      | Framework chính, hỗ trợ SSR, App Router, Server Actions. |
-| **TypeScript**       | Ngôn ngữ chính giúp tăng độ an toàn và dễ bảo trì. |
-| **Tailwind CSS**     | Framework CSS tiện lợi, hỗ trợ responsive và thiết kế hiện đại. |
-| **Bun**              | Runtime thay thế Node.js để chạy ứng dụng siêu nhanh. |
-| **Geist Font**       | Font hiện đại từ Vercel, tối ưu trải nghiệm đọc. |
+| **Công nghệ**         | **Mô tả** |
+|------------------------|----------|
+| **Next.js 15+**        | Framework React fullstack, hỗ trợ App Router, Server Actions, SSR/SSG. |
+| **TypeScript**         | Ngôn ngữ lập trình bổ sung kiểm tra kiểu tĩnh, giúp phát triển an toàn hơn. |
+| **Tailwind CSS**       | Framework CSS utility-first, giúp thiết kế responsive và hiện đại nhanh chóng. |
+| **Bun**                | Runtime thay thế Node.js với tốc độ cao, dùng để chạy script và dev server. |
+| **Geist Font**         | Font chữ hiện đại từ Vercel, tối ưu cho UI sạch và dễ đọc. |
+| **Clerk**              | Hệ thống xác thực (Auth) toàn diện: đăng nhập, đăng ký, OAuth... |
+| **MUX**                | Nền tảng xử lý & phát video chuyên nghiệp: upload, stream, transcode. |
+| **UploadThing**        | Thư viện hỗ trợ tải tệp lên nhanh chóng, dễ tích hợp. |
+| **Drizzle ORM**        | ORM hiện đại cho SQL với type-safe mạnh mẽ, dùng với PostgreSQL. |
+| **tRPC + React Query** | Giao tiếp client-server không cần REST/GraphQL, nhanh và type-safe. |
+| **Radix UI**           | Bộ component UI có khả năng truy cập cao, dùng cho dialog, dropdown... |
+| **Lucide Icons**       | Bộ biểu tượng hiện đại, nhẹ, dễ dùng trong giao diện người dùng. |
 
 ---
 
-##  1.4 🛠️ Công cụ sử dụng
+## 🔧 1.4 Công cụ sử dụng
 
-| **Công cụ**            | **Mục đích sử dụng**        |
-|------------------------|-----------------------------|
-| **Visual Studio Code** | Soạn thảo mã nguồn          |
-| **GitHub, Git**        | Quản lý phiên bản, lưu trữ mã |
-| **Postman**            | Kiểm thử API                |
-| **Figma**              | Thiết kế giao diện (UI)     |
-| **Vercel, Render**     | Triển khai ứng dụng         |
+| **Công cụ**            | **Mục đích sử dụng**            |
+|------------------------|---------------------------------|
+| **Visual Studio Code** | Trình soạn thảo mã nguồn chính. |
+| **Git, GitHub**        | Quản lý phiên bản và lưu trữ mã nguồn. |
+| **Postman**            | Kiểm thử API, gửi request nhanh chóng. |
+| **Figma**              | Thiết kế giao diện người dùng (UI/UX). |
+| **Vercel, Render**     | Deploy ứng dụng frontend/backend serverless. |
+| **Ngrok**              | Tạo public URL để test webhook từ local. |
+| **Drizzle Kit**        | CLI để migrate và quản lý schema database. |
+
 
 --- 
 
@@ -110,7 +119,6 @@ Một ứng dụng web mô phỏng nền tảng xem video trực tuyến YouTube
 - Hiện thị tất cả video mới nhất hoặc theo lượt xem cao.
 - Mỗi video có thumbnail, tiêu đề, tên kênh, số lượt xem và thời gian đăng.
 - Có thể nhập vào video để xem chi tiết.
-- Các video được sắp xếp bằng thuật toán đơn giản học nguồn nhiên.
 
 ## 2.2 ▶️ Xem video
 
@@ -137,7 +145,7 @@ Một ứng dụng web mô phỏng nền tảng xem video trực tuyến YouTube
 
 - Chỉ người dùng đã đăng nhập mới được phép tải video lên.
 - Giao diện tải video gồm: chọn file video, nhập tiêu đề, mô tả, ảnh thumbnail.
-- Video được lưu trữ trên Cloudinary, các thông tin khác được lưu vào MongoDB.
+- Video được lưu trữ trên MUX, các thông tin khác được lưu vào MongoDB.
 
 ## 2.6 📝 Bình luận & Tương tác
 
@@ -165,7 +173,7 @@ Một ứng dụng web mô phỏng nền tảng xem video trực tuyến YouTube
 
  ---
 
- ## 2.9. ⚙️ Sơ đồ quản lí tài khoản:
+ ## 2.9.11 ⚙️ Sơ đồ quản lí tài khoản:
 
  ![image](https://github.com/user-attachments/assets/4a46c423-f38f-4966-8473-c58f31680019)
 
@@ -178,33 +186,53 @@ Một ứng dụng web mô phỏng nền tảng xem video trực tuyến YouTube
   ![image](https://github.com/user-attachments/assets/9ebaa1f6-32df-4e6e-8ad3-a9474ab3f0d1)
 
   ---
-
-   _H2.Trang kênh đã đăng kí_
-
-  ![image](https://github.com/user-attachments/assets/a73aa53e-276f-4cf8-87d7-c508732fb066)
-
- ---
-  _H3.Trang các video trending_
-
-  ![image](https://github.com/user-attachments/assets/101fd01b-552d-4a51-a308-844af73ac13c)
-
-  ---
-   
-_H4.Đăng nhập qua Clerk_
+  
+  _H2.Đăng nhập qua Clerk_
     
    ![image](https://github.com/user-attachments/assets/46dd712d-6820-4c91-91a1-bd051e8526d0)
 
    ---
+   
+   _H3.Trang cá nhân_
+     
+   ![image](https://github.com/user-attachments/assets/0bbc0857-aeab-4400-955f-ba3d9efd141b)
 
-_H5.Trang quản lí video_
+   ---
+   
+   _H4.Trang quản lí video_
 
    ![Trang quản lý video cá nhân](https://github.com/user-attachments/assets/fd93e8ea-6dd2-4c8d-91fd-0621d74f5b3c)
 
    ---
-
-_H6.Trang chỉnh sửa video._
+   
+   _H5.Trang chỉnh sửa video._
 
    ![Trang chỉnh sửa video](https://github.com/user-attachments/assets/b14babb5-225d-4fe5-9b8b-cc5d2b901123)
+
+   ---
+
+  _H6.Trang kênh đã đăng kí_
+
+  ![image](https://github.com/user-attachments/assets/a73aa53e-276f-4cf8-87d7-c508732fb066)
+
+ ---
+ 
+  _H7.Trang các video trending_
+
+  ![image](https://github.com/user-attachments/assets/101fd01b-552d-4a51-a308-844af73ac13c)
+
+  ---
+
+
+  _H8.Trang lịch sử._
+
+![image](https://github.com/user-attachments/assets/8fe08bcb-615d-4144-8002-6bb396e8d486)
+
+---
+
+ _H9.Trang các video đã like._
+
+![image](https://github.com/user-attachments/assets/625c188e-86b3-4be7-aaa8-9cb81f68fe7e)
 
 ---
 
@@ -221,14 +249,18 @@ _H6.Trang chỉnh sửa video._
 
 ## 3.3 🎨 Thiết kế cơ sở dữ liệu
 
-Cơ sở dữ liệu sử dụng MongoDB, theo mô hình NoSQL document-oriented. Dữ liệu được lưu trữ dưới dạng các collection (bảng), với các document (bản ghi) có cấu trúc linh hoạt.
+Cơ sở dữ liệu sử dụng PostgreSQL(MongoDB), theo mô hình NoSQL document-oriented. Dữ liệu được lưu trữ trên cloud, quản lý bằng Neon/Drizzle dưới dạng các collection (bảng), với các document (bản ghi) có cấu trúc linh hoạt.
 
 | Bảng (Collection) | Mục đích | Các trường chính (Fields) | Mô tả chi tiết |
-|-------------------|----------|--------------------------|----------------|
-| **Users**         | Lưu thông tin người dùng | - `_id`: ObjectId (khóa chính) <br> - `username`: String <br> - `email`: String <br> - `password`: String (đã mã hóa) <br> - `avatar`: URL ảnh đại diện <br> - `createdAt`: Ngày tạo tài khoản | Lưu trữ thông tin cơ bản và bảo mật người dùng hệ thống |
-| **Videos**        | Lưu dữ liệu video tải lên | - `_id`: ObjectId <br> - `userId`: ObjectId (người upload) <br> - `title`: String <br> - `description`: String <br> - `videoUrl`: URL video <br> - `thumbnailUrl`: URL ảnh thu nhỏ <br> - `createdAt`: Ngày tải lên <br> - `views`: Số lượt xem | Chứa dữ liệu chính về video, liên kết đến người dùng |
-| **Comments**      | Lưu bình luận của người dùng | - `_id`: ObjectId <br> - `videoId`: ObjectId (video được bình luận) <br> - `userId`: ObjectId (người bình luận) <br> - `content`: String <br> - `createdAt`: Ngày bình luận | Quản lý bình luận, hỗ trợ tương tác trên video |
-| **Likes**         | Lưu thông tin lượt thích | - `_id`: ObjectId <br> - `videoId`: ObjectId <br> - `userId`: ObjectId <br> - `type`: String (`like` hoặc `dislike`) <br> - `createdAt`: Ngày thực hiện | Theo dõi lượt like/dislike của người dùng trên video |
+|-------------------|----------|----------------------------|----------------|
+| **Users**         | Lưu thông tin người dùng | - id: UUID (khóa chính) <br> - clerkId: String (unique) <br> - name: String <br> - imageUrl: URL ảnh đại diện <br> - bannerUrl: URL ảnh bìa <br> - bannerKey: String <br> - createAt: Ngày tạo <br> - updateAt: Ngày cập nhật | Lưu trữ thông tin cơ bản và ảnh đại diện người dùng, hỗ trợ xác thực |
+| **Videos**        | Lưu dữ liệu video tải lên | - id: UUID (khóa chính) <br> - userId: UUID (người đăng) <br> - title: String <br> - description: String <br> - muxAssetId: String (unique) <br> - thumbnailUrl: URL ảnh thu nhỏ <br> - previewUrl: URL preview <br> - visibility: Enum (`private`, `public`) <br> - duration: Integer <br> - categoryId: UUID <br> - createdAt: Ngày tải lên <br> - updatedAt: Ngày cập nhật | Chứa thông tin chính về video, liên kết người dùng và danh mục, hỗ trợ hiển thị thumbnail/preview |
+| **Comments**      | Lưu bình luận của người dùng | - id: UUID (khóa chính) <br> - parentId: UUID (bình luận cha) <br> - videoId: UUID (video được bình luận) <br> - userId: UUID (người bình luận) <br> - value: String <br> - createdAt: Ngày bình luận <br> - updatedAt: Ngày cập nhật | Quản lý bình luận, hỗ trợ phản hồi lồng nhau (nested comment) |
+| **Comment Reactions** | Lưu like/dislike cho bình luận | - userId: UUID <br> - commentId: UUID <br> - type: Enum (`like`, `dislike`) <br> - createdAt: Ngày tạo <br> - updatedAt: Ngày cập nhật | Ghi nhận phản hồi người dùng với bình luận, giới hạn mỗi user chỉ một phản hồi trên một bình luận |
+| **Video Reactions** | Lưu like/dislike cho video | - userId: UUID <br> - videoId: UUID <br> - type: Enum (`like`, `dislike`) <br> - createdAt: Ngày tạo <br> - updatedAt: Ngày cập nhật | Ghi nhận lượt thích/không thích của người dùng cho mỗi video |
+| **Video Views**   | Theo dõi lượt xem video | - userId: UUID <br> - videoId: UUID <br> - createdAt: Ngày xem <br> - updatedAt: Ngày cập nhật | Ghi nhận lượt xem video từ mỗi người dùng, phục vụ phân tích hoặc hiển thị thống kê |
+| **Subscriptions** | Theo dõi người sáng tạo nội dung | - viewerId: UUID (người theo dõi) <br> - creatorId: UUID (người được theo dõi) <br> - createAt: Ngày theo dõi <br> - updateAt: Ngày cập nhật | Cho phép người dùng theo dõi các creator khác, dùng cho gợi ý và quản lý feed |
+| **Categories**    | Phân loại video | - id: UUID (khóa chính) <br> - name: String (unique) <br> - description: String <br> - createdAt: Ngày tạo <br> - updatedAt: Ngày cập nhật | Phân nhóm video theo thể loại để dễ duyệt, tìm kiếm hoặc lọc nội dung |
 
 ---
 
