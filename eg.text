@@ -1,7 +1,99 @@
-Các Farmwork/ Công nghệ sử dụng trong dự án gồm:
-1, Next,js và React 19 (sử dụng bunx)
-2, Lưu tài khoản và tạo tài khoản qua Clerk
-3, Sử dụng thư viện ShadcnUI và tailwindCSS
-4, Sử dụng tRPC để thực hiện bảo mật và an toàn cho các API
-5, Dùng neon, Redis-upstash với PostgreSQL trong DrizzleORM để lưu trữ dữ liệu trên cloud
-6, Quản lý video bằng cách sử dụng các thư viện trong Mux, Uploadthing
+## Công nghệ sử dụng
+
+| **Công nghệ**         | **Mô tả** |
+|------------------------|----------|
+| **Next.js 15+**        | Framework React fullstack, hỗ trợ App Router, Server Actions, SSR/SSG. |
+| **TypeScript**         | Ngôn ngữ lập trình bổ sung kiểm tra kiểu tĩnh, giúp phát triển an toàn hơn. |
+| **Tailwind CSS**       | Framework CSS utility-first, giúp thiết kế responsive và hiện đại nhanh chóng. |
+| **Bun**                | Runtime thay thế Node.js với tốc độ cao, dùng để chạy script và dev server. |
+| **Geist Font**         | Font chữ hiện đại từ Vercel, tối ưu cho UI sạch và dễ đọc. |
+| **Clerk**              | Hệ thống xác thực (Auth) toàn diện: đăng nhập, đăng ký, OAuth... |
+| **MUX**                | Nền tảng xử lý & phát video chuyên nghiệp: upload, stream, transcode. |
+| **UploadThing**        | Thư viện hỗ trợ tải tệp lên nhanh chóng, dễ tích hợp. |
+| **Drizzle ORM**        | ORM hiện đại cho SQL với type-safe mạnh mẽ, dùng với PostgreSQL. |
+| **tRPC + React Query** | Giao tiếp client-server không cần REST/GraphQL, nhanh và type-safe. |
+| **Radix UI**           | Bộ component UI có khả năng truy cập cao, dùng cho dialog, dropdown... |
+| **Lucide Icons**       | Bộ biểu tượng hiện đại, nhẹ, dễ dùng trong giao diện người dùng. |
+
+---
+
+## Công cụ sử dụng
+
+| **Công cụ**            | **Mục đích sử dụng**            |
+|------------------------|---------------------------------|
+| **Visual Studio Code** | Trình soạn thảo mã nguồn chính. |
+| **Git, GitHub**        | Quản lý phiên bản và lưu trữ mã nguồn. |
+| **Postman**            | Kiểm thử API, gửi request nhanh chóng. |
+| **Figma**              | Thiết kế giao diện người dùng (UI/UX). |
+| **Vercel, Render**     | Deploy ứng dụng frontend/backend serverless. |
+| **Ngrok**              | Tạo public URL để test webhook từ local. |
+| **Drizzle Kit**        | CLI để migrate và quản lý schema database. |
+
+## DATABASE
+📦 Users
+Bảng (Collection)	Mục đích	Các trường chính (Fields)	Mô tả chi tiết
+Users	Lưu thông tin người dùng	- id: UUID (PK)
+- clerkId: String (unique)
+- name: String
+- imageUrl: URL ảnh đại diện
+- bannerUrl: URL ảnh bìa
+- bannerKey: String
+- createAt: Timestamp
+- updateAt: Timestamp	Quản lý thông tin người dùng, phục vụ hiển thị hồ sơ, xác thực và cá nhân hóa
+
+🎥 Videos
+Bảng (Collection)	Mục đích	Các trường chính (Fields)	Mô tả chi tiết
+Videos	Lưu dữ liệu video tải lên	- id: UUID (PK)
+- title: String
+- description: String
+- muxAssetId, muxUploadId, muxPlaybackId, muxTrackId: String (mux liên kết)
+- thumbnailUrl, thumbnailKey
+- previewUrl, previewKey
+- duration: Integer
+- visibility: Enum (private, public)
+- userId: UUID (FK)
+- categoryId: UUID (FK)
+- createdAt, updatedAt: Timestamp	Quản lý nội dung video, tích hợp dịch vụ Mux và phân loại theo danh mục người dùng
+
+💬 Comments
+Bảng (Collection)	Mục đích	Các trường chính (Fields)	Mô tả chi tiết
+Comments	Lưu bình luận của người dùng	- id: UUID (PK)
+- parentId: UUID (FK, tự tham chiếu)
+- userId: UUID (FK)
+- videoId: UUID (FK)
+- value: Text
+- createdAt, updatedAt: Timestamp	Cho phép người dùng thảo luận, hỗ trợ bình luận lồng nhau (nested comments)
+
+👍 Video Reactions
+Bảng (Collection)	Mục đích	Các trường chính (Fields)	Mô tả chi tiết
+Video Reactions	Lưu thông tin like/dislike video	- userId: UUID (FK)
+- videoId: UUID (FK)
+- type: Enum (like, dislike)
+- createdAt, updatedAt: Timestamp	Cho phép người dùng đánh giá nội dung video, có thể like hoặc dislike
+
+💭 Comment Reactions
+Bảng (Collection)	Mục đích	Các trường chính (Fields)	Mô tả chi tiết
+Comment Reactions	Lưu thông tin like/dislike bình luận	- userId: UUID (FK)
+- commentId: UUID (FK)
+- type: Enum (like, dislike)
+- createdAt, updatedAt: Timestamp	Phản hồi của người dùng đối với bình luận của người khác
+
+👁️ Video Views
+Bảng (Collection)	Mục đích	Các trường chính (Fields)	Mô tả chi tiết
+Video Views	Theo dõi lượt xem video	- userId: UUID (FK)
+- videoId: UUID (FK)
+- createdAt, updatedAt: Timestamp	Ghi nhận lượt xem của từng người dùng trên từng video
+
+🔔 Subscriptions
+Bảng (Collection)	Mục đích	Các trường chính (Fields)	Mô tả chi tiết
+Subscriptions	Quản lý theo dõi giữa người dùng	- viewerId: UUID (FK)
+- creatorId: UUID (FK)
+- createAt, updateAt: Timestamp	Cho phép người dùng theo dõi người sáng tạo nội dung khác, tạo hệ thống follow/fan
+
+🏷️ Categories
+Bảng (Collection)	Mục đích	Các trường chính (Fields)	Mô tả chi tiết
+Categories	Phân loại video	- id: UUID (PK)
+- name: String (unique)
+- description: String
+- createdAt, updatedAt: Timestamp	Giúp nhóm các video theo chủ đề, hỗ trợ tìm kiếm và duyệt nội dung dễ dàng hơn
+
