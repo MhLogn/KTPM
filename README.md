@@ -208,6 +208,18 @@ _H6.Trang chỉnh sửa video._
 
 ---
 
+_H7.Trang lịch sử._
+
+![image](https://github.com/user-attachments/assets/8fe08bcb-615d-4144-8002-6bb396e8d486)
+
+---
+
+_H8.Trang các video đã like._
+
+![image](https://github.com/user-attachments/assets/625c188e-86b3-4be7-aaa8-9cb81f68fe7e)
+
+---
+
 ## III. 🧱 Thiết kế hệ thống
 
 ## 3.1 🧠 Kiến trúc tổng thể
