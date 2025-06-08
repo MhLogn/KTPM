@@ -10,11 +10,13 @@ import { commentReactionsRouter } from '@/modules/comment-reactions/server/proce
 import { suggestionsRouter } from '@/modules/suggestions/server/procedures';
 import { searchRouter } from '@/modules/search/server/procedures';
 import { playlistsRouter } from '@/modules/playlist/server/procedures';
+import { usersRouter } from '@/modules/users/server/procedures';
 
 export const appRouter = createTRPCRouter({
     studio: studioRouter,
     videos: videosRouter,
     search: searchRouter,
+    users: usersRouter,
     comments: commentsRouter,
     playlists: playlistsRouter,
     categories: categoriesRouter,
