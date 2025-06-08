@@ -165,7 +165,7 @@ Một ứng dụng web mô phỏng nền tảng xem video trực tuyến YouTube
 
  ---
 
- ## 2.9. ⚙️ Sơ đồ quản lí tài khoản:
+ ## 2.9.11 ⚙️ Sơ đồ quản lí tài khoản:
 
  ![image](https://github.com/user-attachments/assets/4a46c423-f38f-4966-8473-c58f31680019)
 
@@ -178,43 +178,51 @@ Một ứng dụng web mô phỏng nền tảng xem video trực tuyến YouTube
   ![image](https://github.com/user-attachments/assets/9ebaa1f6-32df-4e6e-8ad3-a9474ab3f0d1)
 
   ---
-
-   _H2.Trang kênh đã đăng kí_
-
-  ![image](https://github.com/user-attachments/assets/a73aa53e-276f-4cf8-87d7-c508732fb066)
-
- ---
-  _H3.Trang các video trending_
-
-  ![image](https://github.com/user-attachments/assets/101fd01b-552d-4a51-a308-844af73ac13c)
-
-  ---
-   
-_H4.Đăng nhập qua Clerk_
+  
+  _H2.Đăng nhập qua Clerk_
     
    ![image](https://github.com/user-attachments/assets/46dd712d-6820-4c91-91a1-bd051e8526d0)
 
    ---
+   
+   _H3.Trang cá nhân_
+     
+   ![image](https://github.com/user-attachments/assets/0bbc0857-aeab-4400-955f-ba3d9efd141b)
 
-_H5.Trang quản lí video_
+   ---
+   
+   _H4.Trang quản lí video_
 
    ![Trang quản lý video cá nhân](https://github.com/user-attachments/assets/fd93e8ea-6dd2-4c8d-91fd-0621d74f5b3c)
 
    ---
-
-_H6.Trang chỉnh sửa video._
+   
+   _H5.Trang chỉnh sửa video._
 
    ![Trang chỉnh sửa video](https://github.com/user-attachments/assets/b14babb5-225d-4fe5-9b8b-cc5d2b901123)
 
----
+   ---
 
-_H7.Trang lịch sử._
+  _H6.Trang kênh đã đăng kí_
+
+  ![image](https://github.com/user-attachments/assets/a73aa53e-276f-4cf8-87d7-c508732fb066)
+
+ ---
+ 
+  _H7.Trang các video trending_
+
+  ![image](https://github.com/user-attachments/assets/101fd01b-552d-4a51-a308-844af73ac13c)
+
+  ---
+
+
+  _H8.Trang lịch sử._
 
 ![image](https://github.com/user-attachments/assets/8fe08bcb-615d-4144-8002-6bb396e8d486)
 
 ---
 
-_H8.Trang các video đã like._
+ _H9.Trang các video đã like._
 
 ![image](https://github.com/user-attachments/assets/625c188e-86b3-4be7-aaa8-9cb81f68fe7e)
 
